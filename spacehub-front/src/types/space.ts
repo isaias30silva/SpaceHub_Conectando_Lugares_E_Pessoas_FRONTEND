@@ -1,9 +1,15 @@
 export interface Space {
-  id: number;
+
+  id: string;
+
   title: string;
-  description: string;
+
   location: string;
+
   pricePerNight: number;
-  rating: number;
-  image: string;
+
+  rating?: number;
+
+  category?: string;
+
 }

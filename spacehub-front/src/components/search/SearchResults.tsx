@@ -13,25 +13,23 @@ export default function SearchResults() {
     >
       <SpaceCard
         space={{
-          id: 1,
+          id: "1",
           title: "Sala moderna",
-          description: "Espaço confortável próximo ao centro.",
           location: "São Paulo",
           pricePerNight: 150,
           rating: 4.8,
-          image: "/images/space-1.jpg",
+          category: "Apartamento",
         }}
       />
 
       <SpaceCard
         space={{
-          id: 2,
+          id: "2",
           title: "Apartamento confortável",
-          description: "Espaço confortável próximo ao centro.",
           location: "Campinas",
           pricePerNight: 220,
           rating: 4.8,
-          image: "/images/space-1.jpg",
+          category: "Apartamento",
         }}
       />
     </div>
