@@ -57,6 +57,23 @@ export default function LoginForm() {
           "
         />
 
+        <div
+          className="
+    flex
+    justify-between
+
+    text-sm
+  "
+        >
+          <a href="#" className="text-emerald-600">
+            Esqueci minha senha
+          </a>
+
+          <a href="/register" className="text-emerald-600">
+            Criar conta
+          </a>
+        </div>
+
         <Button>Entrar</Button>
       </form>
     </section>
