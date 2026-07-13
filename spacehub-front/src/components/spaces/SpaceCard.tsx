@@ -1,4 +1,5 @@
 import { MapPin, Star } from "lucide-react";
+import Image from "next/image";
 
 import { Space } from "@/types/space";
 
@@ -18,12 +19,18 @@ hover:shadow-md
 transition
 "
     >
-      <div
-        className="
-h-40
-bg-slate-200
-"
-      />
+      <div className="relative h-40">
+        {space.imageUrl ? (
+          <Image
+            src={space.imageUrl}
+            alt={space.title}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="h-full bg-slate-200" />
+        )}
+      </div>
 
       <div className="p-4">
         <h3

@@ -18,7 +18,7 @@ export default function SearchResults() {
           location: "São Paulo",
           pricePerNight: 150,
           rating: 4.8,
-          category: "Apartamento",
+          imageUrl: "/images/spaces/coworking.jpg",
         }}
       />
 
@@ -29,7 +29,7 @@ export default function SearchResults() {
           location: "Campinas",
           pricePerNight: 220,
           rating: 4.8,
-          category: "Apartamento",
+          imageUrl: "/images/spaces/coworking.jpg",
         }}
       />
     </div>

@@ -2,6 +2,7 @@ import SearchHeader from "@/components/search/SearchHeader";
 import Filters from "@/components/search/Filters";
 import SortBar from "@/components/search/SortBar";
 import SearchResults from "@/components/search/SearchResults";
+import MobileFilters from "@/components/search/MobileFilters";
 
 import Container from "@/components/ui/Container";
 
@@ -11,6 +12,7 @@ export default function SearchPage() {
       <SearchHeader />
 
       <Container>
+        <MobileFilters />
         <div
           className="
             mt-10
@@ -24,7 +26,9 @@ export default function SearchPage() {
         >
           <aside
             className="
-              lg:col-span-1
+            hidden
+            lg:block
+            lg:col-span-1
             "
           >
             <Filters />
