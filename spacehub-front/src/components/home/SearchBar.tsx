@@ -1,17 +1,11 @@
+import Container from "@/components/ui/Container";
+
 export default function SearchBar() {
   return (
-    <section
-      className="
-        max-w-7xl
-        mx-auto
-        px-4
-        sm:px-6
-        lg:px-8
-        -mt-4
-      "
-    >
-      <div
-        className="
+    <section className="-mt-4">
+      <Container>
+        <div
+          className="
           bg-white
           rounded-xl
           shadow-md
@@ -24,52 +18,52 @@ export default function SearchBar() {
 
           gap-4
         "
-      >
-        <input
-          type="text"
-          placeholder="Onde?"
-          className="
+        >
+          <input
+            type="text"
+            placeholder="Onde?"
+            className="
             border
             rounded-lg
             px-4
             py-3
           "
-        />
+          />
 
-        <input
-          type="date"
-          className="
+          <input
+            type="date"
+            className="
             border
             rounded-lg
             px-4
             py-3
           "
-        />
+          />
 
-        <input
-          type="date"
-          className="
+          <input
+            type="date"
+            className="
             border
             rounded-lg
             px-4
             py-3
           "
-        />
+          />
 
-        <input
-          type="number"
-          min="1"
-          placeholder="Hóspedes"
-          className="
+          <input
+            type="number"
+            min="1"
+            placeholder="Hóspedes"
+            className="
             border
             rounded-lg
             px-4
             py-3
           "
-        />
+          />
 
-        <button
-          className="
+          <button
+            className="
             bg-emerald-600
             text-white
             rounded-lg
@@ -79,10 +73,11 @@ export default function SearchBar() {
             hover:bg-emerald-700
             transition
           "
-        >
-          Buscar
-        </button>
-      </div>
+          >
+            Buscar
+          </button>
+        </div>
+      </Container>
     </section>
   );
 }
