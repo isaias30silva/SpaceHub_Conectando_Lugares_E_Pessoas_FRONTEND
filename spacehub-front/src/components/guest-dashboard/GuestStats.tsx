@@ -1,3 +1,9 @@
+import {
+  Calendar,
+  CheckCircle,
+  Building2,
+} from "lucide-react";
+
 export default function GuestStats() {
   const stats = [
     {
