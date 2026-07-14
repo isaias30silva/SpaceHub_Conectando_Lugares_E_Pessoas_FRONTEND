@@ -1,74 +1,158 @@
-const days = [
-  1,2,3,4,5,6,7,
-  8,9,10,11,12,13,14,
-  15,16,17,18,19,20,21,
-  22,23,24,25,26,27,28,
-  29,30,31
-];
+"use client";
 
+import { useState } from "react";
 
-export default function AvailabilityCalendar(){
+import { hasBlockedDateBetween } from "@/utils/calendar";
 
-return (
+const days = Array.from({ length: 31 }, (_, index) => index + 1);
 
-<div
-className="
+interface AvailabilityCalendarProps {
+  blockedDays: number[];
+}
+
+export default function AvailabilityCalendar({
+  blockedDays,
+}: AvailabilityCalendarProps) {
+  const [startDate, setStartDate] = useState<number | null>(null);
+
+  const [endDate, setEndDate] = useState<number | null>(null);
+
+  function selectDay(day: number) {
+    if (blockedDays.includes(day)) {
+      return;
+    }
+
+    if (!startDate) {
+      setStartDate(day);
+
+      return;
+    }
+
+    if (!endDate) {
+      const firstDate = Math.min(startDate, day);
+
+      const lastDate = Math.max(startDate, day);
+
+      const invalidPeriod = hasBlockedDateBetween(
+        firstDate,
+        lastDate,
+        blockedDays,
+      );
+
+      if (invalidPeriod) {
+        alert("Este período possui datas indisponíveis.");
+
+        return;
+      }
+
+      setStartDate(firstDate);
+
+      setEndDate(lastDate);
+
+      return;
+    }
+
+    setStartDate(day);
+
+    setEndDate(null);
+  }
+
+  function isInRange(day: number) {
+    if (!startDate || !endDate) {
+      return false;
+    }
+
+    return day > startDate && day < endDate;
+  }
+
+  function getDayClass(day: number) {
+    const blocked = blockedDays.includes(day);
+
+    if (blocked) {
+      return `
+bg-slate-300
+text-slate-500
+cursor-not-allowed
+`;
+    }
+
+    if (day === startDate || day === endDate) {
+      return `
+bg-emerald-600
+text-white
+font-semibold
+`;
+    }
+
+    if (isInRange(day)) {
+      return `
+bg-emerald-100
+text-emerald-700
+`;
+    }
+
+    return `
+hover:bg-emerald-50
+`;
+  }
+
+  return (
+    <div
+      className="
 border
 rounded-xl
 p-6
 "
->
-
-<h2
-className="
+    >
+      <h2
+        className="
 font-semibold
 mb-4
 "
->
-Julho 2026
-</h2>
+      >
+        Julho 2026
+      </h2>
 
-
-<div
-className="
+      <div
+        className="
 grid
 grid-cols-7
 gap-2
 "
->
+      >
+        {days.map((day) => {
+          const blocked = blockedDays.includes(day);
 
-{
-days.map(day=>(
+          return (
+            <button
+              key={day}
+              disabled={blocked}
+              aria-label={`Dia ${day}`}
+              onClick={() => selectDay(day)}
+              className={`
+    h-10
+    rounded-lg
+    border
+    transition
+    ${getDayClass(day)}
+  `}
+            >
+              {day}
+            </button>
+          );
+        })}
+      </div>
 
-<div
-key={day}
-className="
-border
-rounded-lg
-
-h-10
-
-flex
-items-center
-justify-center
-
-cursor-pointer
-
-hover:bg-emerald-50
+      <div
+        className="
+mt-5
+text-sm
 "
->
-{day}
+      >
+        <p>Entrada: {startDate ?? "-"}</p>
 
-</div>
-
-))
-}
-
-</div>
-
-
-</div>
-
-)
-
+        <p>Saída: {endDate ?? "-"}</p>
+      </div>
+    </div>
+  );
 }

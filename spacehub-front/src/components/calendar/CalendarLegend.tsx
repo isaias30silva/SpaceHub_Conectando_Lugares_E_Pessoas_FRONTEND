@@ -4,6 +4,7 @@ export default function CalendarLegend() {
       className="
 mt-6
 flex
+flex-wrap
 gap-6
 text-sm
 "
@@ -14,12 +15,12 @@ text-sm
 inline-block
 h-3
 w-3
-bg-emerald-500
+bg-emerald-600
 rounded-full
 mr-2
 "
         />
-        Disponível
+        Selecionado
       </div>
 
       <div>
@@ -28,12 +29,26 @@ mr-2
 inline-block
 h-3
 w-3
-bg-slate-400
+bg-emerald-100
 rounded-full
 mr-2
 "
         />
-        Reservado
+        Período escolhido
+      </div>
+
+      <div>
+        <span
+          className="
+inline-block
+h-3
+w-3
+bg-slate-300
+rounded-full
+mr-2
+"
+        />
+        Indisponível
       </div>
     </div>
   );
