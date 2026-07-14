@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import AuthCard from "./AuthCard";
 import AuthInput from "./AuthInput";
+import Link from "next/link";
 
 export default function RegisterForm() {
   return (
@@ -84,6 +85,24 @@ export default function RegisterForm() {
         </div>
 
         <Button>Criar Conta</Button>
+
+        <div
+          className="
+    text-center
+    text-sm
+  "
+        >
+          Já possui conta?
+          <Link
+            href="/login"
+            className="
+      ml-1
+      text-emerald-600
+    "
+          >
+            Entrar
+          </Link>
+        </div>
       </form>
     </AuthCard>
   );
