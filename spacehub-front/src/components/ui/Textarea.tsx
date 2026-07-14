@@ -1,12 +1,8 @@
-interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
 }
 
-export default function Input({
-  label,
-  ...props
-}: InputProps) {
+export default function Textarea({ label, ...props }: TextareaProps) {
   return (
     <div>
       {label && (
@@ -21,7 +17,7 @@ export default function Input({
         </label>
       )}
 
-      <input
+      <textarea
         {...props}
         className="
           w-full
