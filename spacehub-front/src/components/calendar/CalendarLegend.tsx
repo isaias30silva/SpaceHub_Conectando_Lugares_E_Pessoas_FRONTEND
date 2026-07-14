@@ -1,0 +1,40 @@
+export default function CalendarLegend() {
+  return (
+    <div
+      className="
+mt-6
+flex
+gap-6
+text-sm
+"
+    >
+      <div>
+        <span
+          className="
+inline-block
+h-3
+w-3
+bg-emerald-500
+rounded-full
+mr-2
+"
+        />
+        Disponível
+      </div>
+
+      <div>
+        <span
+          className="
+inline-block
+h-3
+w-3
+bg-slate-400
+rounded-full
+mr-2
+"
+        />
+        Reservado
+      </div>
+    </div>
+  );
+}
