@@ -58,11 +58,14 @@ export default function RegisterForm() {
           >
             <label
               className="
-        border
-        rounded-lg
-        p-4
-        cursor-pointer
-      "
+    border
+    rounded-xl
+    p-4
+    cursor-pointer
+
+    hover:border-emerald-500
+    transition
+  "
             >
               <input type="radio" name="role" value="guest" />
 
@@ -71,11 +74,14 @@ export default function RegisterForm() {
 
             <label
               className="
-        border
-        rounded-lg
-        p-4
-        cursor-pointer
-      "
+    border
+    rounded-xl
+    p-4
+    cursor-pointer
+
+    hover:border-emerald-500
+    transition
+  "
             >
               <input type="radio" name="role" value="host" />
 
