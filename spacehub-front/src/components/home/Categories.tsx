@@ -53,7 +53,7 @@ export default function Categories() {
               </button>
             );
           })}
-          ;
+          
         </div>
       </Container>
     </section>
