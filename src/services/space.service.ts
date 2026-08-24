@@ -5,9 +5,10 @@ export interface Space {
   title: string;
   description: string;
   pricePerNight: number;
-  maxGuests: number;
+  capacity: number;
   location: string;
-  photos: string[];
+  images: string[];
+  features: string[];
   hostId: string;
 }
 
@@ -35,7 +36,7 @@ export const spaceService = {
   },
 
   updateSpace: async (id: string, data: Partial<CreateSpaceDTO>): Promise<Space> => {
-    const response = await api.put(`/spaces/${id}`, data);
+    const response = await api.patch(`/spaces/${id}`, data);
     return response.data;
   },
 

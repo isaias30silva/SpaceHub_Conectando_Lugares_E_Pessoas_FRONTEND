@@ -16,6 +16,7 @@ export default function NewSpacePage() {
   const [maxGuests, setMaxGuests] = useState("");
   const [location, setLocation] = useState("");
   const [photoUrl, setPhotoUrl] = useState(""); // For simplicity, we just ask for a URL for now.
+  const [featuresInput, setFeaturesInput] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,9 +28,10 @@ export default function NewSpacePage() {
         title,
         description,
         pricePerNight: Number(pricePerNight),
-        maxGuests: Number(maxGuests),
+        capacity: Number(maxGuests),
         location,
-        photos: photoUrl ? [photoUrl] : []
+        images: photoUrl ? [photoUrl] : [],
+        features: featuresInput.split(',').map(f => f.trim()).filter(f => f)
       });
       
       router.push("/dashboard");
@@ -92,6 +94,14 @@ export default function NewSpacePage() {
               <label htmlFor="guests" className="block text-sm font-medium text-gray-700">Máx. Hóspedes</label>
               <div className="mt-1">
                 <input type="number" id="guests" required min="1" value={maxGuests} onChange={e => setMaxGuests(e.target.value)}
+                  className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md border p-2" />
+              </div>
+            </div>
+
+            <div className="sm:col-span-6">
+              <label htmlFor="features" className="block text-sm font-medium text-gray-700">Características (separadas por vírgula)</label>
+              <div className="mt-1">
+                <input type="text" id="features" value={featuresInput} onChange={e => setFeaturesInput(e.target.value)} placeholder="Ex: Wi-Fi, Piscina, Churrasqueira"
                   className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md border p-2" />
               </div>
             </div>

@@ -22,17 +22,17 @@ export type CreateReservationDTO = {
 
 export const reservationService = {
   getMyReservations: async (): Promise<Reservation[]> => {
-    const response = await api.get('/reservations'); // usually /reservations gets current user's reservations
+    const response = await api.get('/bookings/my-bookings'); // usually /reservations gets current user's reservations
     return response.data;
   },
 
   createReservation: async (data: CreateReservationDTO): Promise<Reservation> => {
-    const response = await api.post('/reservations', data);
+    const response = await api.post('/bookings', data);
     return response.data;
   },
 
   cancelReservation: async (id: string): Promise<void> => {
-    await api.patch(`/reservations/${id}/cancel`); // Assuming patch to cancel
+    await api.patch(`/bookings/${id}/cancel`); // Assuming patch to cancel
   },
 
   checkAvailability: async (spaceId: string, startDate: string, endDate: string): Promise<boolean> => {

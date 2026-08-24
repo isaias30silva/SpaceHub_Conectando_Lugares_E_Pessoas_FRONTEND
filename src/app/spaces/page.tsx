@@ -58,8 +58,8 @@ function SpacesList() {
           {spaces.map((space) => (
             <Link key={space.id} href={`/spaces/${space.id}`} className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="aspect-w-4 aspect-h-3 bg-gray-200 relative h-48">
-                {space.photos && space.photos.length > 0 ? (
-                  <img src={space.photos[0]} alt={space.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" />
+                {space.images && space.images.length > 0 ? (
+                  <img src={space.images[0]} alt={space.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" />
                 ) : (
                   <div className="flex items-center justify-center h-full text-gray-400">Sem foto</div>
                 )}
@@ -72,7 +72,7 @@ function SpacesList() {
                   <span className="text-lg font-bold text-gray-900">
                     R$ {space.pricePerNight} <span className="text-sm font-normal text-gray-500">/noite</span>
                   </span>
-                  <span className="text-xs text-gray-500">Até {space.maxGuests} {space.maxGuests === 1 ? 'pessoa' : 'pessoas'}</span>
+                  <span className="text-xs text-gray-500">Até {space.capacity} {space.capacity === 1 ? 'pessoa' : 'pessoas'}</span>
                 </div>
               </div>
             </Link>

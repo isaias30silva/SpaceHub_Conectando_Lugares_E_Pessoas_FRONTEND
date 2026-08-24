@@ -69,8 +69,8 @@ export default function DashboardPage() {
           {spaces.map((space) => (
             <div key={space.id} className="bg-white overflow-hidden shadow rounded-lg border border-gray-200 flex flex-col">
               <div className="h-48 bg-gray-200 w-full relative">
-                {space.photos && space.photos.length > 0 ? (
-                  <img src={space.photos[0]} alt={space.title} className="w-full h-full object-cover" />
+                {space.images && space.images.length > 0 ? (
+                  <img src={space.images[0]} alt={space.title} className="w-full h-full object-cover" />
                 ) : (
                   <div className="flex items-center justify-center h-full text-gray-400">Sem foto</div>
                 )}

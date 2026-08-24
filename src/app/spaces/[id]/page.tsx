@@ -83,8 +83,8 @@ export default function SpaceDetailsPage() {
           {/* Image gallery */}
           <div className="flex flex-col-reverse">
             <div className="w-full aspect-w-1 aspect-h-1 rounded-2xl overflow-hidden bg-gray-200 shadow-md">
-              {space.photos && space.photos.length > 0 ? (
-                <img src={space.photos[0]} alt={space.title} className="w-full h-full object-center object-cover" />
+              {space.images && space.images.length > 0 ? (
+                <img src={space.images[0]} alt={space.title} className="w-full h-full object-center object-cover" />
               ) : (
                 <div className="flex items-center justify-center h-full text-gray-500">Nenhuma foto disponível</div>
               )}
@@ -105,7 +105,7 @@ export default function SpaceDetailsPage() {
                 <span className="font-semibold mr-2">Localização:</span> {space.location}
               </div>
               <div className="flex items-center text-gray-600 mb-6">
-                <span className="font-semibold mr-2">Máximo de Hóspedes:</span> {space.maxGuests}
+                <span className="font-semibold mr-2">Máximo de Hóspedes:</span> {space.capacity}
               </div>
               <h3 className="text-lg font-medium text-gray-900">Sobre este espaço</h3>
               <div className="mt-4 prose prose-sm text-gray-500">
