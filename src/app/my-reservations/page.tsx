@@ -118,10 +118,10 @@ export default function MyReservationsPage() {
                       <div className="mt-2 sm:flex sm:justify-between">
                         <div className="sm:flex flex-col text-sm text-gray-500">
                           <p>
-                            Entrada: {new Date(reservation.startDate || reservation.checkIn).toLocaleDateString('pt-BR')}
+                            Entrada: {new Date(reservation.startDate).toLocaleDateString('pt-BR')}
                           </p>
                           <p>
-                            Saída: {new Date(reservation.endDate || reservation.checkOut).toLocaleDateString('pt-BR')}
+                            Saída: {new Date(reservation.endDate).toLocaleDateString('pt-BR')}
                           </p>
                         </div>
                         <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 gap-4">
