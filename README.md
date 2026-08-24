@@ -1,109 +1,36 @@
-# SpaceHub – Conectando Lugares e Pessoas
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Getting Started
 
-## 🛠️ Instalação e Execução do Projeto
+First, run the development server:
 
-## Pré-requisitos
-
-Antes de iniciar, certifique-se de possuir instalado:
-
-- Node.js (versão LTS recomendada)
-- npm ou outro gerenciador de pacotes
-- Git
-- 
-## Clonando o projeto
-
-Execute:
-
-git clone URL_DO_REPOSITORIO
-
-Acesse a pasta:
-
-cd spacehub-front
-
-## Instalação das dependências
-
-Após clonar o projeto, instale todas as dependências:
-
-npm install
-
-O comando irá instalar automaticamente todas as bibliotecas definidas no arquivo package.json, incluindo:
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- Lucide React
-- Shadcn/UI
-
-## Configuração das variáveis de ambiente
-
-Crie um arquivo chamado:
-
-.env.local
-
-Na raiz do projeto.
-
-Adicione as variáveis necessárias:
-
-NEXT_PUBLIC_API_URL=http://localhost:3001
-
-Para facilitar a configuração de novos integrantes, utilize o arquivo:
-
-.env.example
-
-como referência.
-
-## Executando o projeto
-
-Para iniciar o ambiente de desenvolvimento:
-
+```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Após iniciar, acesse:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-http://localhost:3000
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Estrutura de desenvolvimento
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-O projeto utiliza uma estratégia baseada em branches por funcionalidade:
+## Learn More
 
-develop
+To learn more about Next.js, take a look at the following resources:
 
-├── feature/home-page
-├── feature/search-page
-├── feature/space-details
-├── feature/login-page
-├── feature/register-page
-├── feature/guest-dashboard
-├── feature/host-dashboard
-├── feature/create-space
-├── feature/calendar
-└── feature/booking-flow
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Tecnologias utilizadas
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- Next.js
-- TypeScript
-- Tailwind CSS
-- Shadcn/UI
-- Lucide React
+## Deploy on Vercel
 
-## Integração Backend
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-O frontend foi estruturado para integração com a API desenvolvida em Nest.js.
-
-A comunicação entre aplicações será realizada através de serviços separados:
-
-src/services
-
-permitindo organização dos endpoints e manutenção simplificada.
-
-## Desenvolvimento responsivo
-
-Todas as interfaces seguem a abordagem Mobile First, garantindo compatibilidade com:
-
-- Smartphones
-- Tablets
-- Notebooks
-- Desktops
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
