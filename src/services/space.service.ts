@@ -25,7 +25,7 @@ export const spaceService = {
   },
 
   getMySpaces: async (): Promise<Space[]> => {
-    const response = await api.get('/spaces/me');
+    const response = await api.get('/spaces/my-spaces');
     return response.data;
   },
 

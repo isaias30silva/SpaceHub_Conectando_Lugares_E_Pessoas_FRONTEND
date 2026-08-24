@@ -15,12 +15,22 @@ export interface LoginResponse {
 export const authService = {
   login: async (email: string, password: string): Promise<LoginResponse> => {
     const response = await api.post('/auth/login', { email, password });
-    return response.data;
+    const data = response.data;
+    // Map accessToken to token if the backend returns accessToken
+    if (data.accessToken && !data.token) {
+      data.token = data.accessToken;
+    }
+    return data;
   },
 
   register: async (name: string, email: string, password: string, role: 'HOST' | 'GUEST'): Promise<LoginResponse> => {
     const response = await api.post('/auth/register', { name, email, password, role });
-    return response.data;
+    const data = response.data;
+    // Map accessToken to token if the backend returns accessToken
+    if (data.accessToken && !data.token) {
+      data.token = data.accessToken;
+    }
+    return data;
   },
 
   getProfile: async (): Promise<User> => {
