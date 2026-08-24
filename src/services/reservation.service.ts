@@ -1,7 +1,48 @@
-/**
-POST /reservations
+import { api } from './api';
 
-GET /reservations
+export interface Reservation {
+  id: string;
+  spaceId: string;
+  guestId: string;
+  startDate: string; // Using startDate as typical in backend
+  endDate: string;   // Using endDate as typical in backend
+  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED';
+  totalPrice: number;
+  space?: {
+    title: string;
+    location: string;
+  };
+}
 
-GET /availability
- */
+export type CreateReservationDTO = {
+  spaceId: string;
+  startDate: string;
+  endDate: string;
+};
+
+export const reservationService = {
+  getMyReservations: async (): Promise<Reservation[]> => {
+    const response = await api.get('/reservations'); // usually /reservations gets current user's reservations
+    return response.data;
+  },
+
+  createReservation: async (data: CreateReservationDTO): Promise<Reservation> => {
+    const response = await api.post('/reservations', data);
+    return response.data;
+  },
+
+  cancelReservation: async (id: string): Promise<void> => {
+    await api.patch(`/reservations/${id}/cancel`); // Assuming patch to cancel
+  },
+
+  checkAvailability: async (spaceId: string, startDate: string, endDate: string): Promise<boolean> => {
+    try {
+      const response = await api.get('/availability', {
+        params: { spaceId, startDate, endDate }
+      });
+      return response.data.available ?? true;
+    } catch {
+      return true;
+    }
+  }
+};

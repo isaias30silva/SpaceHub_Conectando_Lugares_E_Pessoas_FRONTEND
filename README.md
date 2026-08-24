@@ -1,65 +1,36 @@
-# SpaceHub Web - Frontend
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-O **SpaceHub** é a interface de usuário da plataforma desenvolvida para conectar pessoas a espaços, facilitando a busca, o gerenciamento e a reserva de imóveis, salas de reunião e coworkings. Este repositório contém exclusivamente o front-end (aplicação web) do projeto, projetado para oferecer uma experiência fluida, responsiva e segura tanto para anfitriões quanto para hóspedes.
+## Getting Started
 
-## 🚀 Tecnologias Utilizadas
-
-A interface foi construída utilizando um ecossistema moderno focado em performance, tipagem estática e componentização:
-
-*   **Framework:** Next.js com React (utilizando o App Router).
-*   **Linguagem:** TypeScript, garantindo segurança na tipagem dos dados.
-*   **Estilização:** Tailwind CSS e PostCSS para estilização utilitária rápida e responsiva.
-*   **Biblioteca de Componentes:** ecossistema shadcn/ui (configurado via `components.json`), utilizando componentes reutilizáveis e acessíveis (ex: `button.tsx`).
-*   **Padronização:** ESLint para manter a qualidade e o padrão do código.
-
-## ⚙️ Arquitetura e Funcionalidades Principais
-
-O front-end consome uma API RESTful externa e está estruturado para lidar com os principais fluxos de negócio exigidos pela aplicação:
-
-*   **Camada de Integração (`src/services/`):** A comunicação com o servidor é abstraída em serviços dedicados, facilitando a manutenção e a reutilização do código:
-    *   `api.ts`: Configuração base do cliente HTTP (geralmente com Axios ou Fetch nativo) lidando com interceptação de tokens.
-    *   `auth.service.ts`: Gerencia o fluxo de login, cadastro e persistência segura do token JWT do usuário.
-    *   `space.service.ts`: Consome as rotas do catálogo, permitindo aos hóspedes buscar/filtrar espaços e aos anfitriões realizarem o CRUD de seus anúncios.
-    *   `reservation.service.ts`: Lida com o fluxo crítico de solicitações de reserva e validações de disponibilidade de datas.
-*   **Interface de Autenticação:** Separa a experiência e o painel de uso entre os papéis de *Anfitrião* (que cadastra imóveis) e *Hóspede* (que realiza as reservas).
-*   **Tratamento de Overbooking:** A interface está preparada para receber e tratar erros 4xx/5xx do servidor de forma amigável, exibindo alertas claros caso o usuário tente reservar um período que já foi ocupado.
-
-## 🛠️ Como rodar o projeto localmente
-
-### Pré-requisitos
-* Node.js (v18 ou superior)
-* A [API do SpaceHub (Backend)](https://github.com/seu-usuario/spacehub-backend) rodando localmente na sua máquina ou disponível via nuvem.
-
-### Passos de Instalação
-
-1. Clone o repositório e instale as dependências:
-```bash
-npm install
-
-```
-
-2. Configure as variáveis de ambiente. Crie um arquivo `.env.local` na raiz do projeto (use o `.env.example` como base):
-
-```env
-# Exemplo de configuração apontando para o backend rodando localmente
-NEXT_PUBLIC_API_URL="http://localhost:3000"
-
-```
-
-3. Inicie o servidor de desenvolvimento:
+First, run the development server:
 
 ```bash
 npm run dev
-
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-4. Acesse a aplicação no seu navegador:
-Abra [http://localhost:3000](http://localhost:3000) (ou a porta indicada no terminal pelo Next.js).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 👥 Desenvolvedores
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Este projeto foi desenvolvido pelo seguinte grupo:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-* **Lucas Satoshi Cipriano Oikawa**
-* **Isaias Menezes Silva**
-* **Yslander Martins de Souza**
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
