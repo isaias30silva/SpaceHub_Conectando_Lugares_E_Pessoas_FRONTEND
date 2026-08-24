@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpaceHub - Conectando Lugares e Pessoas
 
-## Getting Started
+O **SpaceHub** é uma plataforma full-stack desenvolvida para conectar pessoas a espaços, permitindo o gerenciamento e a reserva de imóveis, salas de reunião e coworkings. Este projeto agora engloba a solução completa (Backend e Frontend), projetada para centralizar dados, garantir a confiabilidade da disponibilidade e fornecer uma experiência segura e fluida aos usuários.
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A aplicação foi construída utilizando uma arquitetura moderna dividida entre cliente e servidor:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend (Interface do Usuário)
+*   **Framework:** Next.js com React (App Router)
+*   **Estilização:** Tailwind CSS e componentes integrados via ecossistema Shadcn UI (ex: `button.tsx`)
+*   **Integração com API:** Camada de serviços (`src/services/api.ts`, `auth.service.ts`, `reservation.service.ts`, `space.service.ts`) configurada para comunicação estruturada com o backend.
+*   **Ferramentas:** PostCSS, ESLint, TypeScript.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Backend (Servidor e API)
+*   **Framework:** NestJS (Node.js)
+*   **ORM:** Prisma
+*   **Banco de Dados:** PostgreSQL
+*   **Segurança:** Autenticação via JWT e Bcrypt para criptografia de senhas.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Arquitetura e Funcionalidades Principais
 
-## Learn More
+O sistema atende a dois perfis principais (Anfitrião/Host e Hóspede/Guest) e está estruturado de ponta a ponta nos seguintes domínios:
 
-To learn more about Next.js, take a look at the following resources:
+*   **Autenticação e Perfil:** Criação de contas e login seguro, garantindo que o hóspede acesse suas reservas e o anfitrião gerencie seus anúncios. O frontend consome essa lógica via `auth.service.ts`.
+*   **Catálogo Dinâmico (Spaces):** Permite ao anfitrião realizar o CRUD completo de seus imóveis (título, descrição, preço, fotos). A interface renderiza o catálogo e os filtros de busca integrando-se via `space.service.ts`.
+*   **Motor de Reservas (Bookings):** Valida a disponibilidade do espaço no banco de dados para impedir *overbooking* (reservas duplicadas no mesmo período). O fluxo de reservas no cliente é gerenciado pelo `reservation.service.ts`.
+*   **Gestão de Imagens:** Suporte para envio e armazenamento de fotos dos imóveis cadastrados.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛡️ Regras de Negócio e Segurança
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*   **Prevenção de Overbooking:** O backend possui verificações rigorosas para bloquear tentativas de reserva concomitantes para o mesmo imóvel.
+*   **Isolamento de Dados (IDOR):** Um usuário logado só pode editar ou excluir os seus próprios anúncios.
+*   **Segurança de Dados Sensíveis:** O frontend gerencia os tokens localmente, e o backend jamais expõe senhas em texto puro.
 
-## Deploy on Vercel
+## 🛠️ Como Rodar o Projeto Localmente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1. Configurando o Backend (API)
+1. Acesse o diretório do backend (NestJS) e instale as dependências: `npm install`
+2. Crie um arquivo `.env` baseado no `.env.example` contendo as credenciais do PostgreSQL e a chave `JWT_SECRET`.
+3. Execute as migrações do banco de dados: `npx prisma migrate dev`
+4. Inicie o servidor: `npm run start:dev` (A API estará disponível na porta definida no backend).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Configurando o Frontend (Web)
+1. Acesse o diretório da interface (`spacehub-front-deploy`).
+2. Instale as dependências do front-end:
+   ```bash
+   npm install
+   ```
+3. Crie um arquivo `.env.local` baseado no `.env.example`. Certifique-se de configurar a URL da API (por exemplo: `NEXT_PUBLIC_API_URL=http://localhost:3000`).
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+5. Acesse a aplicação no navegador via `http://localhost:3000` (ou a porta mapeada pelo Next.js).
