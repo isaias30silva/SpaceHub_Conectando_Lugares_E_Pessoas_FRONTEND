@@ -1,55 +1,65 @@
-# SpaceHub - Conectando Lugares e Pessoas
+# SpaceHub Web - Frontend
 
-O **SpaceHub** é uma plataforma full-stack desenvolvida para conectar pessoas a espaços, permitindo o gerenciamento e a reserva de imóveis, salas de reunião e coworkings. Este projeto agora engloba a solução completa (Backend e Frontend), projetada para centralizar dados, garantir a confiabilidade da disponibilidade e fornecer uma experiência segura e fluida aos usuários.
+O **SpaceHub** é a interface de usuário da plataforma desenvolvida para conectar pessoas a espaços, facilitando a busca, o gerenciamento e a reserva de imóveis, salas de reunião e coworkings. Este repositório contém exclusivamente o front-end (aplicação web) do projeto, projetado para oferecer uma experiência fluida, responsiva e segura tanto para anfitriões quanto para hóspedes.
 
 ## 🚀 Tecnologias Utilizadas
 
-A aplicação foi construída utilizando uma arquitetura moderna dividida entre cliente e servidor:
+A interface foi construída utilizando um ecossistema moderno focado em performance, tipagem estática e componentização:
 
-### Frontend (Interface do Usuário)
-*   **Framework:** Next.js com React (App Router)
-*   **Estilização:** Tailwind CSS e componentes integrados via ecossistema Shadcn UI (ex: `button.tsx`)
-*   **Integração com API:** Camada de serviços (`src/services/api.ts`, `auth.service.ts`, `reservation.service.ts`, `space.service.ts`) configurada para comunicação estruturada com o backend.
-*   **Ferramentas:** PostCSS, ESLint, TypeScript.
-
-### Backend (Servidor e API)
-*   **Framework:** NestJS (Node.js)
-*   **ORM:** Prisma
-*   **Banco de Dados:** PostgreSQL
-*   **Segurança:** Autenticação via JWT e Bcrypt para criptografia de senhas.
+*   **Framework:** Next.js com React (utilizando o App Router).
+*   **Linguagem:** TypeScript, garantindo segurança na tipagem dos dados.
+*   **Estilização:** Tailwind CSS e PostCSS para estilização utilitária rápida e responsiva.
+*   **Biblioteca de Componentes:** ecossistema shadcn/ui (configurado via `components.json`), utilizando componentes reutilizáveis e acessíveis (ex: `button.tsx`).
+*   **Padronização:** ESLint para manter a qualidade e o padrão do código.
 
 ## ⚙️ Arquitetura e Funcionalidades Principais
 
-O sistema atende a dois perfis principais (Anfitrião/Host e Hóspede/Guest) e está estruturado de ponta a ponta nos seguintes domínios:
+O front-end consome uma API RESTful externa e está estruturado para lidar com os principais fluxos de negócio exigidos pela aplicação:
 
-*   **Autenticação e Perfil:** Criação de contas e login seguro, garantindo que o hóspede acesse suas reservas e o anfitrião gerencie seus anúncios. O frontend consome essa lógica via `auth.service.ts`.
-*   **Catálogo Dinâmico (Spaces):** Permite ao anfitrião realizar o CRUD completo de seus imóveis (título, descrição, preço, fotos). A interface renderiza o catálogo e os filtros de busca integrando-se via `space.service.ts`.
-*   **Motor de Reservas (Bookings):** Valida a disponibilidade do espaço no banco de dados para impedir *overbooking* (reservas duplicadas no mesmo período). O fluxo de reservas no cliente é gerenciado pelo `reservation.service.ts`.
-*   **Gestão de Imagens:** Suporte para envio e armazenamento de fotos dos imóveis cadastrados.
+*   **Camada de Integração (`src/services/`):** A comunicação com o servidor é abstraída em serviços dedicados, facilitando a manutenção e a reutilização do código:
+    *   `api.ts`: Configuração base do cliente HTTP (geralmente com Axios ou Fetch nativo) lidando com interceptação de tokens.
+    *   `auth.service.ts`: Gerencia o fluxo de login, cadastro e persistência segura do token JWT do usuário.
+    *   `space.service.ts`: Consome as rotas do catálogo, permitindo aos hóspedes buscar/filtrar espaços e aos anfitriões realizarem o CRUD de seus anúncios.
+    *   `reservation.service.ts`: Lida com o fluxo crítico de solicitações de reserva e validações de disponibilidade de datas.
+*   **Interface de Autenticação:** Separa a experiência e o painel de uso entre os papéis de *Anfitrião* (que cadastra imóveis) e *Hóspede* (que realiza as reservas).
+*   **Tratamento de Overbooking:** A interface está preparada para receber e tratar erros 4xx/5xx do servidor de forma amigável, exibindo alertas claros caso o usuário tente reservar um período que já foi ocupado.
 
-## 🛡️ Regras de Negócio e Segurança
+## 🛠️ Como rodar o projeto localmente
 
-*   **Prevenção de Overbooking:** O backend possui verificações rigorosas para bloquear tentativas de reserva concomitantes para o mesmo imóvel.
-*   **Isolamento de Dados (IDOR):** Um usuário logado só pode editar ou excluir os seus próprios anúncios.
-*   **Segurança de Dados Sensíveis:** O frontend gerencia os tokens localmente, e o backend jamais expõe senhas em texto puro.
+### Pré-requisitos
+* Node.js (v18 ou superior)
+* A [API do SpaceHub (Backend)](https://github.com/seu-usuario/spacehub-backend) rodando localmente na sua máquina ou disponível via nuvem.
 
-## 🛠️ Como Rodar o Projeto Localmente
+### Passos de Instalação
 
-### 1. Configurando o Backend (API)
-1. Acesse o diretório do backend (NestJS) e instale as dependências: `npm install`
-2. Crie um arquivo `.env` baseado no `.env.example` contendo as credenciais do PostgreSQL e a chave `JWT_SECRET`.
-3. Execute as migrações do banco de dados: `npx prisma migrate dev`
-4. Inicie o servidor: `npm run start:dev` (A API estará disponível na porta definida no backend).
+1. Clone o repositório e instale as dependências:
+```bash
+npm install
 
-### 2. Configurando o Frontend (Web)
-1. Acesse o diretório da interface (`spacehub-front-deploy`).
-2. Instale as dependências do front-end:
-   ```bash
-   npm install
-   ```
-3. Crie um arquivo `.env.local` baseado no `.env.example`. Certifique-se de configurar a URL da API (por exemplo: `NEXT_PUBLIC_API_URL=http://localhost:3000`).
-4. Inicie o servidor de desenvolvimento:
-   ```bash
-   npm run dev
-   ```
-5. Acesse a aplicação no navegador via `http://localhost:3000` (ou a porta mapeada pelo Next.js).
+```
+
+2. Configure as variáveis de ambiente. Crie um arquivo `.env.local` na raiz do projeto (use o `.env.example` como base):
+
+```env
+# Exemplo de configuração apontando para o backend rodando localmente
+NEXT_PUBLIC_API_URL="http://localhost:3000"
+
+```
+
+3. Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+
+```
+
+4. Acesse a aplicação no seu navegador:
+Abra [http://localhost:3000](http://localhost:3000) (ou a porta indicada no terminal pelo Next.js).
+
+## 👥 Desenvolvedores
+
+Este projeto foi desenvolvido pelo seguinte grupo:
+
+* **Lucas Satoshi Cipriano Oikawa**
+* **Isaias Menezes Silva**
+* **Yslander Martins de Souza**
